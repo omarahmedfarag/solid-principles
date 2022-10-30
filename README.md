@@ -6,7 +6,7 @@ SOLID stands for:
 •	D - Dependency Inversion 
 
 ******************************************************************
-1-Single-responsibility :- 
+# 1-Single-responsibility :- 
   A class should have one and only one reason to change, meaning that a class should have only one job
   
 Example :
@@ -21,7 +21,29 @@ Consider a scenario where the output should be converted to another format like 
 All of the logic would be handled by the AreaCalculator class. This would violate the single-responsibility principle. The AreaCalculator class should only be concerned with the sum of the areas of provided shapes. It should not care whether the user wants JSON or HTML
 
 
-### Now we will Apply Single-responsibility
+@ Now we will Apply Single-responsibility
 
 ![image](https://user-images.githubusercontent.com/45467325/198904749-a8078ebb-ddcd-429a-a930-26d3f623307f.png)
+![image](https://user-images.githubusercontent.com/45467325/198904907-8b7e4cbe-9d06-49ea-992d-65214438a788.png)
+
+*******************************************************************
+# 2- Open-Closed Principle
+  Objects or entities should be open for extension but closed for modification.
+  
+  
+Example
+![image](https://user-images.githubusercontent.com/45467325/198905002-2c5bcadf-56ff-4b7d-a965-75e1d130035b.png)
+
+ 
+Can you guss the problem ?  : hint (the problem with the in a specific senario sum method)
+
+!! Consider a scenario where the user would like the sum of additional shapes like triangles, pentagons, hexagons, etc. You would have to constantly edit this file and add more if/else blocks. That would violate the open-closed principle.
+  
+Solution - > A way you can make this sum method better is to remove the logic to calculate the area of each shape out of the AreaCalculator class method and attach it to each shape’s class.
+
+![image](https://user-images.githubusercontent.com/45467325/198905187-d2ebb02b-60bd-4416-a64c-5691de8ac0a6.png) ![image](https://user-images.githubusercontent.com/45467325/198905207-a7b10a9b-2f3a-48f5-b778-554153277fc9.png)
+
+![image](https://user-images.githubusercontent.com/45467325/198905229-a58020ae-fe5b-4876-ba4c-97f80901caba.png)
+
+Now, you can create another shape class and pass it in when calculating the sum without breaking the code.
 
