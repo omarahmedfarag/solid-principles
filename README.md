@@ -47,3 +47,21 @@ Solution - > A way you can make this sum method better is to remove the logic to
 
 Now, you can create another shape class and pass it in when calculating the sum without breaking the code.
 
+
+********************************************************************
+# 3- Liskov Substitution Principle
+  This means that every subclass or derived class should be substitutable for their base or parent class.
+  
+Example 
+![image](https://user-images.githubusercontent.com/45467325/198905548-5f82bdf1-f962-47b7-b52c-25c980222eb0.png)
+![image](https://user-images.githubusercontent.com/45467325/198905557-b6376d5f-6a18-4e27-b731-f6e4172f45b7.png)
+![image](https://user-images.githubusercontent.com/45467325/198905571-fe1d9753-14eb-467b-9acd-efdd0b49c97c.png)
+
+Can you guss the problem ?  : hint (the problem with the output)
+
+!! When you call the HTML method on the $output2 object, you will get an E_NOTICE error informing you of an array to string conversion.
+
+Solution - > To fix this, instead of returning an array from the VolumeCalculator class sum method, return $summedData:
+![image](https://user-images.githubusercontent.com/45467325/198905640-f280eb0b-bd56-4682-ab4a-1f09190a7e16.png)
+
+
