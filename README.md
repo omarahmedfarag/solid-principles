@@ -14,7 +14,7 @@ Example :
 ![image](https://user-images.githubusercontent.com/45467325/198904687-5dce76ff-02ba-4036-8914-06bc5af6e98e.png)
 ![image](https://user-images.githubusercontent.com/45467325/198904693-a3f6dce4-123a-4e1c-b3d9-3cd907ccf92c.png)
 
-Can you guess the problem here ? : hint (the problem will be with output the output ) 
+Can you guess the problem here ? : hint (the problem will be with output ) 
 
 !! The problem with the output method is that the AreaCalculator handles the logic to output the data.
 Consider a scenario where the output should be converted to another format like JSON.
