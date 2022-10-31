@@ -47,6 +47,11 @@ Solution - > A way you can make this sum method better is to remove the logic to
 
 Now, you can create another shape class and pass it in when calculating the sum without breaking the code.
 
+However, another problem arises. How do you know that the object passed into the AreaCalculator is actually a shape or if the shape has a method named area?
+![image](https://user-images.githubusercontent.com/45467325/198995872-28e17559-fa81-4a9d-8fb1-ff6ac3842581.png)
+![image](https://user-images.githubusercontent.com/45467325/198995903-40fef3a2-369e-4357-a19a-9b783d1f8301.png)
+
+
 
 ********************************************************************
 # 3- Liskov Substitution Principle
@@ -64,4 +69,44 @@ Can you guss the problem ?  : hint (the problem with the output)
 Solution - > To fix this, instead of returning an array from the VolumeCalculator class sum method, return $summedData:
 ![image](https://user-images.githubusercontent.com/45467325/198905640-f280eb0b-bd56-4682-ab4a-1f09190a7e16.png)
 
+*********************************************************************
+# 4- Interface Segregation Principle
+  A client should never be forced to implement an interface that it doesn’t use, or clients shouldn’t be forced to depend on methods they do not use.
+  
+Example 
+Still building from the previous ShapeInterface example, you will need to support the new three-dimensional shapes of Cuboid and Spheroid, and these shapes will need to also calculate volume.
 
+![image](https://user-images.githubusercontent.com/45467325/198996263-50ae843a-acfb-4819-9c27-7361bd0084cd.png)
+
+Can you guss the problem ? : hint (the problem with the volum function)
+
+Now, any shape you create must implement the volume method, but you know that squares are flat shapes and that they do not have volumes, so this interface would force the Square class to implement a method that it has no use of.
+
+This would violate the interface segregation principle. Instead, you could create another interface called ThreeDimensionalShapeInterface that has the volume contract and three-dimensional shapes can implement this interface:
+
+![image](https://user-images.githubusercontent.com/45467325/198996390-098d09b0-e8b8-498e-a978-bef091c22305.png)
+
+**********************************************************************
+# 5- Dependency Inversion Principle
+  Entities must depend on abstractions, not on concretions. It states that the high-level module must not depend on the low-level module, but they should depend on       abstractions.
+  --This principle allows for decoupling.
+  
+Example 
+ 
+Here is an example of a PasswordReminder that connects to a MySQL database:
+![image](https://user-images.githubusercontent.com/45467325/198998143-79f7709a-201b-49fc-8112-214eba8a7a63.png)
+
+First, the MySQLConnection is the low-level module while the PasswordReminder is high level, but according to the definition of D in SOLID, which states to Depend on abstraction, not on concretions. This snippet above violates this principle as the PasswordReminder class is being forced to depend on the MySQLConnection class.
+
+Later, if you were to change the database engine, you would also have to edit the PasswordReminder class, and this would violate the open-close principle.
+
+The PasswordReminder class should not care what database your application uses. To address these issues, you can code to an interface since high-level and low-level modules should depend on abstraction:
+
+![image](https://user-images.githubusercontent.com/45467325/198998207-59f89a4e-ef51-4b2d-bcf5-d3cee0a72e6f.png)
+
+The interface has a connect method and the MySQLConnection class implements this interface. Also, instead of directly type-hinting MySQLConnection class in the constructor of the PasswordReminder, you instead type-hint the DBConnectionInterface and no matter the type of database your application uses, the PasswordReminder class can connect to the database without any problems and open-close principle is not violated.
+
+![image](https://user-images.githubusercontent.com/45467325/198998407-3037f32f-d8c5-4827-8fd7-5c609f02edc3.png)
+
+# Conclusion
+In this article, you were presented with the five principles of SOLID Code. Projects that adhere to SOLID principles can be shared with collaborators, extended, modified, tested, and refactored with fewer complications.
